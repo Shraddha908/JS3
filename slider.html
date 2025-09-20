@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #main{
+        
+        justify-content: center;
+        align-items: center;
+        color: lime;
+        font-size: 3rem;
+        font-family: monospace;
+    }
+
+    input,button{
+        height: 30px;
+        font-size: 15px;
+        
+    }
+
+    #slider{
+        width: 400px;
+        height: 400px;
+        margin-top: 100px;   
+    }
+
+    #slider img{
+        width: 100%;
+        height: 100;
+    }
+
+  </style>
+</head>
+<body>
+     <nav>
+          <a href="./store.html" > store page </a>
+          <a href="./slider.html"> slider page </a>
+     </nav>
+
+     <div id="slider"></div>
+
+    <button onclick="playslider()">play</button>
+    <button onclick="pauseslider()">pause</button>
+</body>
+<script>
+      let slider_data = JSON.parse(localStorage.getItem("slider_data"))
+      let sliderDiv = document.getElementById("slider")
+      let index = 0;
+      let sliderID;
+
+      function play(){
+       sliderDiv.innerHTML = null;
+      if(index==slider_data.length){
+        index = 0
+      }
+
+      let img = document.createElement("img");
+      img.style.width = "400px"
+      img.style.height = "400px"
+      img.src = slider_data[index];
+      sliderDiv.append(img);
+      index++;
+      }
+
+     sliderID =  setInterval(play,1000);
+
+      function pauseslider(){
+        clearInterval(sliderID)
+      }
+
+      function playslider(){
+        sliderID = setInterval(play,1000);
+      }
+</script>
+</html>

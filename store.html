@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <style>
+    #main{
+        
+        justify-content: center;
+        align-items: center;
+        
+        
+        color: lime;
+        font-size: 3rem;
+        font-family: monospace;
+    }
+
+    input,button{
+        height: 30px;
+        font-size: 15px;
+    }
+
+  </style>
+
+</head>
+<body>
+     <nav>
+          <a href="./store.html" > store page </a>
+          <a href="./slider.html"> slider page </a>
+     </nav>
+    <div id="main" >
+   <input type="text" placeholder="enter your images url">
+   <button onclick="storefun()">submit</button>
+    </div>
+</body>
+<script>
+        let arr = JSON.parse(localStorage.getItem("slider_data"))|| []
+        let input =document.querySelector("input")
+    function storefun(){
+     arr.push(input.value)
+     console.log(arr)
+     input.value = ""
+     localStorage.setItem("slider_data",JSON.stringify(arr))
+    }
+    </script>
+</html>
