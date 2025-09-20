@@ -3,15 +3,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #main {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      #main > div {
+        text-align: center;
+        border: 2px solid;
+      }
+
+      .images {
+        
+        width: 100%;
+      }
+
+      select,input{
+        width: 300px;
+        height: 60px;
+        font-size: 30px;
+
+      }
+    </style>
 </head>
 <body>
-    <h1>Promise</h1>
+    <select onchange="filterpr()">
+        <option value="">Filter By Price</option>
+        <option value="lth">Low to High</option>
+        <option value="htl">High to Low</option>
+    </select>
 
-    <input type="text" placeholder="enter your password">
-    <button onclick="Delayfun()">submit</button>
-<br>
-    <img alt="">
+    <input type="text" placeholder="Search...">
 
+    <br><br>
+    <div id="main"></div>
 </body>
-<script src="./index.js"></script>
+<script src="index.js"></script>
 </html>
