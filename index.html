@@ -4,44 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #search_box{
-            width: 250px;
+        iframe{
+            width: 600px;
             height: 400px;
-            margin-top: 10px;
-            overflow: scroll;
-        }
-
-        #search_box>div{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            box-shadow: rgba(245, 80, 80, 0.24) 0px 3px 8px;
-            padding: 5px;
-            color: rgb(9, 55, 116);
-        }
-
-        #search_box>div>img{
-            width: 40px;
-            height: 40px;
-        }
-
-        input{
-            font-size: 25px;
-            width: 250px;
-            height: 50px;
         }
     </style>
 </head>
-
 <body>
-    <h1>Debouncing</h1>
+    <h1>Weather app</h1>
+
+    <input type="text"  placeholder="Enter City Name">
+    <button  onclick="getData()">Search</button>
 
     <br><br>
 
-    <input oninput="Delay()"type="text" placeholder="search movie...">
+    <div id="main"></div>
 
-    <div id="search_box"></div>
-</body>
+    <br><br>
+   
+  </body>
 <script src="./index.js"></script>
 </html>

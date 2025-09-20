@@ -1,38 +1,33 @@
-let api = "http://www.omdbapi.com/?i=tt3896198&apikey=105fb6bc";
+let api_key = "0d87d3be5010d515475d28d7936095b0"
+let api = "https://api.openweathermap.org/data/2.5/weather";
+
+
+
 let input = document.querySelector("input")
-let search_box = document.getElementById("search_box");
+let main = document.querySelector("#main")
 
-
+//?q=Bhopal&appid=0d87d3be5010d515475d28d7936095b0&units=metric
 
 const getData = async()=>{
-    let x = input.value;
-    let res = await fetch(`${api}&s=${x}`)
-    let data = await res.json()
-    
-    display(data.Search)
+    let cityname = input.value || "buldhana";
+  let res = await fetch(`${api}?q=${cityname}&appid=${api_key}&units=metric`);
+//   console.log(res)
+  let data = await res.json() 
+   display(data)
 }
 
- function Delay(){
-   setTimeout(getData,1000)
- }
+getData()
 
-function display(data){
-  search_box.innerHTML=""
-  data.forEach(({Title,Poster,Year})=>{
-  
+function display({name,main:{temp}}){
+  //  console.log(data.name)
+  //  console.log(data.main.temp)
 
-    let title = document.createElement("h4")
-    title.innerText=Title
-    let year = document.createElement("h5")
-    year.innerText=Year
-    let img = document.createElement("img")
-    img.src=Poster
-    let div = document.createElement("div")
+    main.innerHTML = `<h1>${name}</h1>
+                      <h2>${temp}</h2>
+                     <iframe src="https://maps.google.com/maps?&hl=en&q=
+                     ${name}&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                     `;
+                      
+   
 
-    div.append(img,title,year)
-
-    search_box.append(div)
-  })
 }
- 
-
