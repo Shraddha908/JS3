@@ -4,41 +4,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #main {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-      }
+        #search_box{
+            width: 250px;
+            height: 400px;
+            margin-top: 10px;
+            overflow: scroll;
+        }
 
-      #main > div {
-        text-align: center;
-        border: 2px solid;
-      }
+        #search_box>div{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            box-shadow: rgba(245, 80, 80, 0.24) 0px 3px 8px;
+            padding: 5px;
+            color: rgb(9, 55, 116);
+        }
 
-      .images {
-        
-        width: 100%;
-      }
+        #search_box>div>img{
+            width: 40px;
+            height: 40px;
+        }
 
-      select,input{
-        width: 300px;
-        height: 60px;
-        font-size: 30px;
-
-      }
+        input{
+            font-size: 25px;
+            width: 250px;
+            height: 50px;
+        }
     </style>
 </head>
-<body>
-    <select onchange="filterpr()">
-        <option value="">Filter By Price</option>
-        <option value="lth">Low to High</option>
-        <option value="htl">High to Low</option>
-    </select>
 
-    <input type="text" placeholder="Search...">
+<body>
+    <h1>Debouncing</h1>
 
     <br><br>
-    <div id="main"></div>
+
+    <input oninput="Delay()"type="text" placeholder="search movie...">
+
+    <div id="search_box"></div>
 </body>
-<script src="index.js"></script>
+<script src="./index.js"></script>
 </html>
