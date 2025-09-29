@@ -1,29 +1,93 @@
-let api ="https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCyv90Sb2Dbtnv_czuidnNhsD6EIS7mjRo&maxResults=30";
-let container = document.getElementById("container")
-let input = document.querySelector("input")
+let username = localStorage.getItem("login_data");
+let main = document.getElementById("main");
+let navbar = document.getElementById("navbar");
+let products = JSON.parse(localStorage.getItem("products"));
 
+let cart_arr = JSON.parse(localStorage.getItem("cartData")) || [];
 
-const getData = async()=>{
-    let s = input.value
-    let res = await fetch(`${api}&q=${s}`);
-    let data = await res.json();
-    let item = data.items
-    console.log(item);
-    display(item);
+display(products);
+
+if (username != null) {
+    navbar.innerHTML = null; 
+   
+    let name = document.createElement("h4");
+    name.innerText = username;
+
+    
+    let cart = document.createElement("h4");
+    cart.addEventListener("click", function () {
+        window.location.href = "../html/cart.html";
+    });
+    cart.innerText = "Cart";
+
+ 
+    let logout = document.createElement("button");
+    logout.addEventListener("click", logoutfun);
+    logout.innerText = "Logout";
+
+   
+    navbar.append(name, cart, logout);
+} else {
+
+    let login = document.createElement("a");
+    login.href = "../html/login.html";
+    login.innerText = "Login";
+
+    let signup = document.createElement("a");
+    signup.href = "../html/signup.html";
+    signup.innerText = "Signup";
+
+    navbar.append(login, signup);
 }
 
 
+function logoutfun() {
+    localStorage.removeItem("login_data");
+    window.location.href = "../html/login.html";
+}
 
-const display= (data)=>{
-    container.innerHTML=""
-    data.map(({id:{videoId},snippet:{title}})=>{
-    let name = document.createElement("h2")
-    name.innerText = title
-    let video =document.createElement("iframe")
-    video.src = `https://www.youtube.com/embed/${videoId}`;
-    let div = document.createElement("div")
-    div.append(video,name)
-    container.append(div)     
-     })
-}    
-  
+
+function display(products) {
+    products.forEach(function (el) {
+       
+        let name = document.createElement("h2");
+        name.innerText = el.title;
+
+        let price = document.createElement("h3");
+        price.innerText = (el.price);
+
+        let img = document.createElement("img");
+        img.src = el.images[0]; 
+
+
+        
+     let cartbtn = document.createElement("button");
+     cartbtn.innerText = "Add to Cart";
+     cartbtn.addEventListener("click",function(){
+     let alreadyInCart = false;
+     for(let i=0;i<cart_arr.length;i++){
+      if(cart_arr[i].id ==el.id){
+       alreadyInCart = true;
+        break;
+    }
+  }
+
+       if(alreadyInCart){
+       window.location.href = "../html/cart.html";
+    }else{
+      cart_arr.push(el);
+      localStorage.setItem("cartData", JSON.stringify(cart_arr));
+      alert("Product is Added to cart")
+      cartbtn.innerText = "Go to cart"
+   }
+ })
+
+
+
+    let div = document.createElement("div");
+    div.classList.add("product"); 
+
+    div.append(img, name, price, cartbtn);
+    main.append(div);
+    });
+}
