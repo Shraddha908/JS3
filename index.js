@@ -1,33 +1,29 @@
-let api_key = "0d87d3be5010d515475d28d7936095b0"
-let api = "https://api.openweathermap.org/data/2.5/weather";
-
-
-
+let api ="https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCyv90Sb2Dbtnv_czuidnNhsD6EIS7mjRo&maxResults=30";
+let container = document.getElementById("container")
 let input = document.querySelector("input")
-let main = document.querySelector("#main")
 
-//?q=Bhopal&appid=0d87d3be5010d515475d28d7936095b0&units=metric
 
 const getData = async()=>{
-    let cityname = input.value || "buldhana";
-  let res = await fetch(`${api}?q=${cityname}&appid=${api_key}&units=metric`);
-//   console.log(res)
-  let data = await res.json() 
-   display(data)
+    let s = input.value
+    let res = await fetch(`${api}&q=${s}`);
+    let data = await res.json();
+    let item = data.items
+    console.log(item);
+    display(item);
 }
 
-getData()
 
-function display({name,main:{temp}}){
-  //  console.log(data.name)
-  //  console.log(data.main.temp)
 
-    main.innerHTML = `<h1>${name}</h1>
-                      <h2>${temp}</h2>
-                     <iframe src="https://maps.google.com/maps?&hl=en&q=
-                     ${name}&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
-                     `;
-                      
-   
-
-}
+const display= (data)=>{
+    container.innerHTML=""
+    data.map(({id:{videoId},snippet:{title}})=>{
+    let name = document.createElement("h2")
+    name.innerText = title
+    let video =document.createElement("iframe")
+    video.src = `https://www.youtube.com/embed/${videoId}`;
+    let div = document.createElement("div")
+    div.append(video,name)
+    container.append(div)     
+     })
+}    
+  

@@ -3,25 +3,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        iframe{
-            width: 600px;
-            height: 400px;
-        }
-    </style>
 </head>
+<style>
+    #container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 20px;
+    }
+    #container>div{
+        border: 2px solid;
+    }
+    #container>div>iframe{
+        width: 100%;
+    }
+    input{
+        padding:10px;
+        width: 300px;
+        border-color:gold;
+    }
+    button{
+        border-color:gold;
+        height:40px;
+    }
+    div{
+        border: 2px solid;
+    }
+    div>img{
+       /* margin-top:40px;  */
+        width: 200px;
+        height: 80px;
+    }
+</style>
 <body>
-    <h1>Weather app</h1>
-
-    <input type="text"  placeholder="Enter City Name">
-    <button  onclick="getData()">Search</button>
-
-    <br><br>
-
-    <div id="main"></div>
-
-    <br><br>
-   
-  </body>
+    <div>
+    <img src="https://fdn.gsmarena.com/imgroot/news/21/12/youtube-premium-listening-controls/-728x314/gsmarena_000.jpg">
+    <input type="text" placeholder="Search for content">
+    <button onclick="getData()">search</button>
+    </div>
+    <div id="container"></div>
+</body>
 <script src="./index.js"></script>
 </html>
