@@ -1,0 +1,29 @@
+#main{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+}
+#main>div{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+#main>div>img{
+  width: 100%;
+}
+.qunatitydiv{
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  width: 200px;
+
+  padding: 5px;
+  margin: auto;
+  margin-top: 10px;
+}
+.qunatitydiv>button{
+  font-size: 25px;
+  font-weight: bold;
+}

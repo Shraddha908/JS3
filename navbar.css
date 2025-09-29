@@ -1,0 +1,17 @@
+nav{
+    border: 2px solid;
+    padding: 5px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+span{
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}

@@ -26,23 +26,9 @@ if(username != null){
    let paybtn = document.createElement("button")
    paybtn.innerText="Phonpay"
 
-   paybtn.addEventListener("click",function(){
+  paybtn.addEventListener("click",function(){
   window.location.href="https://www.phonepe.com/"
 
-    // let alreadyInpay = false;
-    //  for(let i =0;i<pay_arr.length;i++){
-    //     if(pay_arr[i].id == el.id){
-    //         alreadyInpay = true;
-    //         break;
-    //     }
-    //  }
-
-    //  if(alreadyInpay){
-    //     pay_arr.push(el);
-    //     this.localStorage.setItem("payData",JSON.stringify(pay_arr));
-    //     alert("pay your money")
-    //     paybtn.innerText = "Go to pay"
-    //  }
    })
    let logout=document.createElement("button")
    logout.addEventListener("click",logoutfun)
@@ -66,17 +52,17 @@ function logoutfun(){
 
 function display(product){
 
-    main.innerHTML = null
-   product.map(function(el,index){
+  main.innerHTML = null
+  product.map(function(el,index){
   
-    let count = 0;
-    let Quantity= el.currentQunatity || 1
-    let name=document.createElement("h2")
-    name.innerText=el.title;
-    let price=document.createElement("h3")
-    price.innerText= Math.floor(el.price * Quantity);
-    let img=document.createElement("img")
-    img.src=el.images[0]
+  let count = 0;
+  let Quantity= el.currentQunatity || 1
+  let name=document.createElement("h2")
+  name.innerText=el.title;
+  let price=document.createElement("h3")
+  price.innerText= Math.floor(el.price * Quantity);
+  let img=document.createElement("img")
+  img.src=el.images[0]
 
 
 
@@ -89,7 +75,7 @@ function display(product){
   let check=document.createElement("h4")
   check.addEventListener("click",function(){
 
-   window.location.href="https://www.phonepe.com/";
+  window.location.href="https://www.phonepe.com/";
   })
   check.innerText="check"
 // **********
@@ -102,7 +88,7 @@ function display(product){
     let removebtn=document.createElement("button")
     removebtn.innerText="Remove";
     removebtn.addEventListener("click",function(){
-        removefun(el,index)
+    removefun(el,index)
  })
 
     let QunatityDiv=document.createElement("div")
@@ -122,19 +108,19 @@ function display(product){
 
 
     plusbtn.addEventListener("click",function(){
-       Quantity++;
-       el.currentQunatity = Quantity
-        price.innerText= Math.floor(el.price) * Quantity;
-        quantityText.innerText = Quantity;
-        updateTotal();
+    Quantity++;
+    el.currentQunatity = Quantity
+    price.innerText= Math.floor(el.price) * Quantity;
+    quantityText.innerText = Quantity;
+    updateTotal();
 
     })
 
     minusbtn.addEventListener("click",function(){
-       Quantity--;
-        quantityText.innerText = Quantity;
-        price.innerText= Math.floor(el.price )* Quantity;
-        updateTotal();
+    Quantity--;
+    quantityText.innerText = Quantity;
+    price.innerText= Math.floor(el.price )* Quantity;
+    updateTotal();
 
     })
 
@@ -155,7 +141,7 @@ updateTotal()
 function updateTotal(){
     let newTotal=0;
     cart_arr.forEach(function(el){
-        newTotal=newTotal+Math.floor(el.price)*el.currentQunatity
+    newTotal=newTotal+Math.floor(el.price)*el.currentQunatity
     })
 
     total.innerText=`Total Amount is ${newTotal}`
